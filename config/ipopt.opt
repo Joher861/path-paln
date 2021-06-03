@@ -1,0 +1,21 @@
+print_level 0
+
+# max_iter 300
+
+# tol 0.000001
+
+# acceptable_tol 0.001
+
+# mu_strategy adaptive
+
+# linear_solver mumps
+
+hessian_approximation limited-memory
+
+limited_memory_update_type bfgs
+
+# warm_start_init_point yes
+
+# warm_start_bound_push 1e-6
+
+# warm_start_mult_bound_push 1e-6

@@ -1,0 +1,534 @@
+%YAML:1.0
+
+# log_level: 0-NONE, 1-DEBUG, 2-INFO, 3-WARN, 4-ERROR
+# log_ts_mask: 8 bit 
+#    bit 7     6        5            4         3       2         1          0
+#        |     |        |            |         |       |         |          |
+#       NONE  NONE READABLE_MS  READABLE_US  RAW_MS  RAW_US  SYSTEM_MS  SYSTEM_US
+
+# planning
+cfg_planning:
+    log_name: "planning"
+    log_path: "/tmp/log/test"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 2
+
+# log
+cfg_log:
+    enable_log: 1
+    use_fast_readable_ts: 1
+    timezone_offset: 8
+    disable_sync_with_stdio: 0
+    untie_cin_cout: 0
+
+# data_center
+cfg_data_center:
+    log_name: "data_center"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 0
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 3
+
+# event_center
+cfg_event_center:
+    log_name: "event_center"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 0
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 2
+    event_timeout: 10000000     # unit us
+
+# detector
+# emergency_stop_detector
+cfg_emergency_stop_detector:
+    log_name: "emergency_stop_detector"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 50
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 3
+    lasting_period: 3
+    reset_lasting_period: 1
+    # max_break_acc: 0.5
+    jumped_dist_threshold: 0.2  # unit m
+    threshold_ultrasonic_front_default: 20        # unit cm 按照最低速度0.3m/s设计, feedback
+    threshold_ultrasonic_front_left_default: 20   # unit cm 按照最低速度0.3m/s设计, feedback
+    threshold_ultrasonic_front_right_default: 20  # unit cm 按照最低速度0.3m/s设计, feedback
+    threshold_ultrasonic_left_down_1: 25          # unit cm
+    threshold_ultrasonic_left_down_2: 20          # unit cm
+    threshold_ultrasonic_right_down_1: 25         # unit cm
+    threshold_ultrasonic_right_down_2: 20         # unit cm
+    print_us: 0
+    polling_frequency: 20 # unit hz
+    #from left to right
+    #akslam3 18 13 13 18 13 [30]: 23 20 25 20 25
+    #akslam4 18 18 18 13 13 [30]: 25 25 25 24 23
+
+# obstacle_detector
+cfg_obstacle_detector:
+    log_name: "obstacle_detector"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 50
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 3
+    lasting_period: 3
+    reset_lasting_period: 1
+    # max_break_acc: 0.5
+    # vehicle_longitude_size: 1.0       # unit m
+    # vehicle_lateral_size: 0.6  # 0.75  0.6
+    vehicle_lateral_inflate_size: 0.85
+    forward_safe_distance_default: 0.20    # 按照最低速度0.3m/s设计, feedback
+    front_side_safe_distance_default: 0.20  # 按照最低速度0.3m/s设计, feedback
+    side_safe_distance: 0.20
+    left_safe_dis_bias:  0.0
+    right_safe_dis_bias: 0.0
+    grid_of_interest_radius_default: 2      # 按照最低速度0.3m/s设计, intended unit m
+    grid_of_far_circle_radius_default: 2    # 按照最低速度0.3m/s设计, intended unit m 1.5
+    grid_of_near_circle_radius: 1   # unit m 1.5
+    # robot_pose_in_local_map_x_default: 80
+    # robot_pose_in_local_map_y_default: 80
+    # local_map_resolution: 0.05        # unit m
+    # local_map_size_x: 161
+    # local_map_size_y: 161
+    polling_frequency: 10             # unit hz
+
+# collision_detector
+cfg_collision_detector:
+    log_name: "collision_detector"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 50
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 3
+    lasting_period: 3
+    obstacle_radius: 1    # unit m
+    # vehicle_longitude_size: 1.0
+    # vehicle_lateral_size: 0.6
+    inflate_longitude_dist_small: 0.0
+    inflate_lateral_dist_small: 0.0
+    inflate_longitude_dist_large: 0.0
+    inflate_lateral_dist_large: 0.0
+    # robot_pose_in_local_map_x_default: 80
+    # robot_pose_in_local_map_y_default: 80
+    # local_map_resolution: 0.05        # unit m
+    # local_map_size_x: 161
+    # local_map_size_y: 161
+    max_det_path_points_num_default: 60 # 100
+    predict_horizon: 10               # unit s
+    polling_frequency: 10             # unit hz
+
+# map
+# clean_map
+cfg_clean_map:
+    log_name: "clean_map"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 3
+    resolution: 0.05
+    map_size_x: 801 #1239    # 801
+    map_size_y: 801 #851    # 801
+    origin_pt_x: -20
+    origin_pt_y: -20
+    max_inflate_range: 0.4
+    smaller_inflate_radius_offset: -0.05
+    local_max_inflate_range: 0.30
+    local_smaller_inflate_radius_offset: -0.05
+    local_map_polling_frequency: 200
+    local_map_updating_frequency: 30
+    local_map_detecting_frequency: 100
+    print_local_map: 0
+    print_local_inflate_map: 0
+    footstr: "[[1.05, -0.3],[1.05, 0.3], [-0.15,0.3],[-0.15,-0.3]]"
+    rviz_display: 0
+    use_esdf_map: 0
+
+# local_map
+cfg_local_map:
+    log_name: "local_map"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 0
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 1
+    resolution: 0.05
+    map_size_x: 161
+    map_size_y: 161
+    origin_pt_x: 0.0
+    origin_pt_y: 0.0
+    window_size_x: 161
+    window_size_y: 161
+    max_inflate_range: 0.30
+    # smaller_inflate_radius_offset: -0.05
+    local_map_polling_frequency: 10
+    local_map_updating_frequency: 30
+    local_map_detecting_frequency: 100
+    print_local_map: 0
+    print_local_inflate_map: 0
+    footstr: "[[1.05, -0.3],[1.05, 0.3], [-0.15,0.3],[-0.15,-0.3]]"
+    rviz_display: 1
+    use_esdf_map: 0
+
+# local planner
+# task
+cfg_task:
+    log_name: "task"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 4
+    task_polling_frequency: 100.0 # unit hz
+
+# rotate_planner
+cfg_rotate_planner:
+    log_name: "rotate_planner"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 0
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 2
+    ev_deduction_period_for_us: 3000000 # unit us
+    planning_frequency: 20.0 # unit hz
+
+# purepursuit_planner
+cfg_purepursuit_planner:
+    log_name: "purepursuit_planner"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 50
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 2
+    default_velocity: 0.3
+    inflate_longitude_param: 0.3
+    inflate_lateral_param: 0.4
+    # vehicle_longitude_size: 1.3
+    # vehicle_lateral_size: 1.0   # 0.75  0.87 0.95 v_l_size_in_od + 2*side_safe_dis = 1.0
+    grid_of_interest_radius: 2.05 # unit m
+    bias_lateral: 1.9            # unit m
+    # robot_pose_in_local_map_x_default: 80
+    # robot_pose_in_local_map_y_default: 80
+    # local_map_resolution: 0.05 #unit m
+    # local_map_size_x: 161
+    # local_map_size_y: 161
+    obstacle_radius: 0.8    # unit m  0.8
+    ev_deduction_period_for_us: 3000000 # unit us
+    planning_frequency: 5.0 # unit hz
+
+# mpc_planner
+cfg_MPC_planner:
+    log_name: "mpc_planner"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 0
+    log_max_file_size_mb: 50
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 2
+    conf_lr: 0.84     # 0.5  0.84时robot跟踪opt极准
+    conf_lf: 0.0      # 0.5
+    conf_NX: 3
+    conf_NU: 2
+    conf_N: 5
+    conf_delta_lower_bound: -90     # degree       
+    conf_delta_upper_bound: 90      # degree 
+    conf_Qx: 2         # 2 
+    conf_Qy: 10        # 10    
+    conf_Qphi: 4       # 4
+    conf_Qdelta: 0.4   # 1  0.5很好 0.3完美转弯稍内圈 0.4完美
+    ev_deduction_period_for_us: 3000000 # unit us
+    planning_frequency: 10.0 # unit hz 
+
+# global planner
+# path_follow_planner
+cfg_path_follow_planner:
+    log_name: "path_follow_planner"
+    log_path: "/tmp/log/test"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 2
+    interval_dense: 0.05   # unit m
+    interval_sparse: 1     # unit m
+    ev_deduction_period_for_us: 3000000 # unit us
+    set_oa_off: 0
+    set_collis_lasting_off: 0
+    collision_lasting_threshold: 15 # unit s
+    delta_rotate_angle: 8 # unit degree
+    max_velocity: 1.0
+    min_velocity: 0.5
+    max_curvature: 2     # 0.5m radius -> min_velocity
+    min_curvature: 0.3  #  5m radius -> max_velocity 
+    const_velocity: 0
+    test_velocity: 0.3
+    # local_map_resolution: 0.05
+    # local_map_size_x: 161
+    # local_map_size_y: 161
+    planning_frequency: 2 # unit hz
+    
+#navigation_planner
+cfg_navigation_planner:
+    log_name: "nav_planner"
+    log_path: "/tmp/log/test"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 1
+    planning_frequency: 10 # unit hz
+    planning_tries: 5
+    planning_hz: 1
+    get_map_tries: 5
+    planning_patience: 5
+    reach_timeout: 30
+
+# CCPP coverage_planner
+cfg_ccpp_planner:
+    log_name: "coverage_planner"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 1
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 1
+    planning_frequency: 0.001    # unit hz
+    default_clean_dir: 0.0      # unit deg (0 - 360)
+    default_clean_width: 0.15   # unit m
+    ignore_clean_dist: 0.20     # unit m, gap less than the param will be ignore on clean line
+    clean_line_v: 0.30          # unit m/s,
+    turn_curve_v: 0.15          # unit m/s, u turn speed 
+    turn_curve_w: 65            # unit deg/s, u turn speed
+    turn_line_v: 0.20           # unit m/s
+    turn_follow_v: 0.20         # unit m/s
+    resolution: 0.05           # 地图的分辨率 m
+    robot_radius: 1            # 机器人的半径 m
+    grid_spacing_in_meter: 0.5    # 进三退二规划器中每一个间隔的距离 m
+    coverage_radius: 1.0     # 机器人的覆盖半径 m
+    min_line_cleaning_distance: 3    # 最小的清扫距离
+    complementary_path_distance: 2   # 补充轨迹的距离 m
+    need_hybrid_distance: 5    #需要Hybrid A* 的距离 m
+    distance_to_boundary: 0   # 距离边界的距离 m
+    min_cell_area_: 10         # 分割cell的最小面积 m^2  // 清扫的最小面积  m^2
+
+#teb configuration start
+#teb planner
+cfg_Teb_planner:
+    ev_deduction_period_for_us: 3000000 # unit us
+#teb footprint      footstr: "[[0.3, 1.05], [-0.3, 1.05], [-0.3,-0.15],[0.3,-0.15]]"
+cfg_TebFootstr:
+    footstr: "[[1.05, -0.3],[1.05, 0.3], [-0.15,0.3],[-0.15,-0.3]]"
+    
+# Trajectory
+cfg_TebTrajectory: 
+    teb_autosize: 1
+    dt_ref: 0.3 #0.3 Too high values (> 0.6s) can lead to trajectories that are not feasible anymore due to the poor 
+                                    #approximation of the kinodynamic model (especially in case of car-like robots).
+    dt_hysteresis: 0.1
+    min_samples: 3
+    max_samples: 500
+    global_plan_overwrite_orientation: 1
+    allow_init_with_backwards_motion: 0
+    global_plan_viapoint_sep: 0.3
+    no_viapoint_idx: 1
+    via_points_ordered: false
+    max_global_plan_lookahead_dist: 5.0    #2.0 3.0 decreacing the value can make local planner follow global planner more strictly.
+                                                                #But this approach is NOT recommended, since it reduces the prediction/planning horizon
+                                                                #and weakens the capabilities of avoiding obstacles (the virtual goal is fixed in current 
+                                                                #versions and thus not subject to optimization). 
+
+    global_plan_prune_distance: 2
+    exact_arc_length: 0
+
+    feasibility_check_no_poses: 8  #5
+    publish_feedback: 0
+    control_look_ahead_poses: 4
+
+# Robot
+cfg_TebRobot:       
+    max_vel_x: 0.3
+    min_vel_x: 0.07
+    max_vel_x_backwards: 0.1
+    max_vel_y: 0.0
+    max_vel_theta: 1.0 #1.3
+    min_vel_theta: 0.05 
+    acc_lim_x: 0.5
+    acc_lim_y: 0.5
+    acc_lim_theta: 0.5
+    min_turning_radius: 0 # diff-drive robot (can turn on place!)
+    wheelbase: 0.83
+    cmd_angle_instead_rotvel: true
+    is_footprint_dynamic: false
+    use_proportional_saturation: false
+# GoalTolerance
+cfg_TebGoalTolerance:
+    xy_goal_tolerance: 0.08
+    yaw_goal_tolerance: 0.08
+    free_goal_vel: 0
+    complete_global_plan: 1
+    
+# Obstacles
+cfg_TebObstacle:   
+    min_obstacle_dist: 1.0 #0.8 This value must also include our robot radius, since footprint_model is set to "point".
+    inflation_dist: 0.15  #First, increase the one for more separation from wall. Second, increase min_obstacle_dist.
+    dynamic_obstacle_inflation_dist: 0.6
+    include_dynamic_obstacles: false
+    include_costmap_obstacles: 1
+    costmap_obstacles_behind_robot_dist: 0.8  #1.5
+    obstacle_poses_affected: 8  #15   For small obstacles and point obstacles, this value can be small (<10). Increase the value again
+                                                        # if the trajectory is not smooth enough close to obstacles.
+
+    legacy_obstacle_association: false
+    obstacle_association_force_inclusion_factor: 1.5
+    obstacle_association_cutoff_factor: 5
+    obstacle_angle_increasment: 0.1
+    obstacle_proximity_ratio_max_vel: 1
+    obstacle_proximity_lower_bound: 0
+    obstacle_proximity_upper_bound: 0.8
+    use_sdf_map: 0
+
+# Optimization
+cfg_TebOptimization:
+    no_inner_iterations: 4  #origin value: 5
+    no_outer_iterations: 3  #origin value: 4
+    optimization_activate: 1
+    optimization_verbose: 0
+    penalty_epsilon: 0.05
+    weight_max_vel_x: 2
+    weight_max_vel_y: 0
+    weight_max_vel_theta: 1
+    weight_acc_lim_x: 1
+    weight_acc_lim_y: 0
+    weight_acc_lim_theta: 1
+    weight_kinematics_nh: 1000
+    weight_kinematics_forward_drive: 150  #1
+    weight_kinematics_turning_radius: 1
+    weight_optimaltime: 1 # must be > 0    origin value: 1
+    weight_shortest_path: 0
+    weight_obstacle: 100  #100
+    weight_inflation: 0.2
+    weight_dynamic_obstacle: 10
+    weight_dynamic_obstacle_inflation: 0.2
+    weight_viapoint: 1    #1 increasing the value can make local planner follow global planner more strictly.
+    weight_prefer_rotdir: 50
+    weight_adapt_factor: 2
+    weight_velocity_obstacle_ratio: 0
+    obstacle_cost_exponent: 4
+
+# Homotopy Class Planner
+cfg_TebHomotopyClasses:
+    enable_homotopy_class_planning: 1   #1
+    enable_multithreading: 1
+    simple_exploration: 2 
+    max_number_classes: 3 #4
+    selection_enable_same_orientation: 0 
+    selection_same_orientation_tolerance: 0.785
+    selection_same_orientation_scale: 0.8
+    selection_cost_hysteresis: 1
+    selection_prefer_initial_plan: 0.9
+    selection_obst_cost_scale: 100.0
+    selection_viapoint_cost_scale: 1.0
+    selection_alternative_time_cost: 0
+    selection_kinematics_cost_scale: 200.0
+    switching_blocking_period: 0.0
+    roadmap_graph_no_samples: 15
+    roadmap_graph_area_width: 5   #5
+    roadmap_graph_area_length_scale: 1.0
+    h_signature_prescaler: 0.5
+    h_signature_threshold: 0.1
+    obstacle_keypoint_offset: 0.1
+    obstacle_heading_threshold: 0.45
+    viapoints_all_candidates: 1
+    visualize_hc_graph: 0
+    visualize_with_time_as_z_axis_scale: 0
+    delete_detours_backwards: 1
+    length_start_orientation_vector: 0.4
+    max_ratio_detours_duration_best_duration: 3.0
+    use_astar: 1
+
+# Recovery
+cfg_TebRecovery:
+    shrink_horizon_backup: 0
+    shrink_horizon_min_duration: 10
+    oscillation_recovery: 0
+    oscillation_v_eps: 0.1
+    oscillation_omega_eps: 0.1
+    oscillation_recovery_min_duration: 10
+    oscillation_filter_duration: 10
+
+# TebTurnPid
+cfg_TebTurnPid:
+    turn_p: 60
+    turn_i: 2
+    turn_d: 0
+    turn_scale: 0
+    turn_min_error: 0.05
+    turn_min_output: 5
+    turn_max_output: 50
+    turn_error_inc: 10
+    turn_continuous_angle: 1
+
+#teb log
+cfg_Teblog:
+    log_name: "teb_planner"
+    log_path: "/tmp/log/test"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 0
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 1
+    planning_frequency: 5.0 # unit hz
+#teb configuration end
+
+# controller
+# speed_controller
+cfg_speed_controller:
+    log_name: "speed_controller"
+    log_extension: "log"
+    log_ts_mask: 2
+    log_print_to_console: 0
+    log_max_file_size_mb: 2
+    log_max_file_size_kb: 0
+    log_max_file_cnt: 2
+    log_level: 1
+    max_angular_steer: 90     # unit: degree
+    min_angular_steer: -90    # unit: degree
+    rotate_vel: 0.1           # init, unit: m/s
+    steer_bias: 0.0           # unit: degree
+    sending_speed_frequency: 50.0 # unit hz

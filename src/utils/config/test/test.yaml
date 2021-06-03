@@ -1,0 +1,33 @@
+%YAML:1.0
+
+#debug version
+#settings for plan
+
+#cpu
+cfg_cpu:
+    cpu_mask: 2          # k900: 2    k905: 8            
+    all_cpu_mask: 63     # k900: 63   k905: 15
+
+#log level
+cfg_log_level: 
+    log_level: 1
+    print_log: 0
+    save_navigation_log: 1
+    save_circle_log: 1
+    save_localmap_log: 2
+    save_chassis_speed_command_log: 1
+    save_path_log: 1
+    save_move_side_path_img: 0
+    save_clean_map: 1
+    save_localmap_img: 0
+    test_float: 0.1
+    test_mat: !!opencv-matrix
+        rows: 3
+        cols: 2
+        dt:   u
+        data:
+            [6, 2,
+             2, 2,
+             6, 2]
+    test_str: "asd"
+    test_bool: 0

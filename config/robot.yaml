@@ -1,0 +1,48 @@
+%YAML:1.0
+
+# robot
+cfg_robot:
+    vehicle_longitude_size: 1.0   # unit m
+    vehicle_lateral_size: 0.6     # unit m
+    local_map_size_x: 161
+    local_map_size_y: 161
+    robot_pose_in_local_map_x_default: 80
+    robot_pose_in_local_map_y_default: 80
+    local_map_resolution: 0.05    # unit m
+    rotate_vel_default: 0.2       # unit m/s
+    max_linear_vel: 1.5           # unit: m/s
+    min_linear_vel: 0             # unit: m/s
+    max_break_acc: 0.5            # unit: m/s^2
+
+    # below unused
+    wheels_distance: 0.55
+    wheel_perimeter: 0.00
+    main_brush_length: 0.55
+    footprint_resolution: 0.05
+    footprint_description: !!opencv-matrix
+        rows: 22
+        cols: 13
+        dt:   u
+        data:
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,2,2,2,2,2,1,1,1,1,
+             1,1,1,2,2,2,2,2,2,2,1,1,1,
+             1,1,2,2,2,2,2,2,2,2,2,1,1,
+             1,2,2,2,2,2,2,2,2,2,2,2,1,
+             1,2,2,2,2,2,2,2,2,2,2,2,1,
+             1,2,2,2,2,2,2,2,2,2,2,2,1,
+             1,2,2,2,2,2,2,2,2,2,2,2,1,
+             1,2,2,2,2,2,2,2,2,2,2,2,1,
+             1,1,2,2,2,2,2,2,2,2,2,1,1,
+             1,1,1,2,2,2,2,2,2,2,1,1,1,
+             1,1,1,1,2,2,2,2,2,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1,
+             1,1,1,1,1,1,1,1,1,1,1,1,1]
